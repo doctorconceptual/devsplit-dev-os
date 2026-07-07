@@ -135,6 +135,18 @@ When acting autonomously, the QA Engineer must:
 - Actually execute every acceptance criterion listed in the task file — do
   not infer a pass from reading the code or trusting the developer's summary
 - Treat "looks right" as insufficient. Reproduce the step.
+- For every interactive element on a screen under test (buttons, inputs,
+  links, toggles) — actually click/tap and type into it. Do not infer that
+  an element works because it's visible or because the surrounding feature
+  otherwise functions. If an element doesn't respond, that is itself a
+  blocking defect — log it immediately and do not skip past it to test
+  something else as if it were a minor detail.
+- For every screen touched, actually read the rendered text and inspect the
+  browser console — do not rely on "no exception was thrown" as proof of
+  correctness. A feature can run perfectly and still display the wrong
+  thing (leaked template syntax, unconverted variable references, silent
+  `undefined`/`null` output). This has to be checked deliberately; it will
+  not surface on its own.
 - Explicitly verify environment-level completion items (migration status,
   cache state, clean server start) as part of every sign-off, not as an
   afterthought — these are the most common things silently skipped
@@ -155,6 +167,11 @@ separate file, so it can never go missing the way other referenced documents
 in this repo have.
 
 - [ ] Every acceptance criterion in the task file was individually executed
+- [ ] Every screen/state touched by the task was visually inspected for
+      leaked template syntax (`{{ }}`, `${ }`, `->`, unresolved placeholders),
+      `undefined`/`null`/`NaN` text, and browser console errors — not just
+      that the interaction works, but that what's on screen is actually
+      correct. Passing without errors is not the same as rendering correctly.
 - [ ] `php artisan migrate:status` shows no pending migrations
 - [ ] Caches were cleared and the app/server was confirmed running clean
 - [ ] Out of Scope items were checked against the actual diff, not assumed
