@@ -76,7 +76,8 @@ hand. Nothing is dropped. A vision model can be added later as a drop-in (see
 4. Read `sites-to-audit.xlsx` and state the first `Pending` store URL you will
    run against (record 1 is https://loandcointeriors.com/ — restate it verbatim).
    Confirm it is public and safe to hit.
-5. Pull latest `main` and create branch: `feature/001-cro-audit-agent`
+5. Work on the current branch — everything is already here. Do NOT create or
+   check out a new branch. Commit your changes to the current branch.
 
 Do not guess credentials, API keys, URLs, or file paths. If something referenced
 here is missing, wrong, or unclear once you look at the actual project, stop and
@@ -251,7 +252,8 @@ ask — do not substitute your own assumption.
 - [ ] Speed sourced from PageSpeed API
 - [ ] Batch runner handles blocked/failed sites gracefully
 - [ ] Secrets kept out of git
-- [ ] Branch created and changes committed locally (do not push unless told)
+- [ ] Changes committed to the current branch (do not create a new branch; do
+      not push unless told)
 - [ ] Summary of changes written to `output/001-summary.md`
 
 ---
