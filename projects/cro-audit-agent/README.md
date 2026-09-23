@@ -36,11 +36,19 @@ A hybrid pipeline routes each check to the method that can actually answer it.
 The `Method` column in `cro-audit-checklist.xlsx` tells the agent which to use:
 
 - **DOM** (61 checks) — a fact in the rendered HTML. Deterministic, reliable.
+  **Auto-answered.**
+- **API** (4 checks) — the site-speed checks, from Google PageSpeed Insights
+  (free). **Auto-answered.**
 - **Vision** (20 checks) — a judgment from a screenshot (buried reviews,
-  cluttered hero, mobile layout break).
-- **API** (4 checks) — the site-speed checks, from Google PageSpeed Insights.
-- **Manual** (7 checks) — needs a live checkout flow or a subjective call;
-  output is marked `review`, never guessed.
+  cluttered hero, mobile layout break). **Human-reviewed for now** — see below.
+- **Manual** (7 checks) — needs a live checkout flow or a subjective call.
+  **Human-reviewed.**
+
+**No Vision API in the current build.** To avoid a paid vision-model dependency,
+the agent auto-answers only the DOM and API checks. Vision and Manual checks are
+output as `review` with desktop + mobile screenshots attached, so a human makes
+the visual call quickly. A vision model can be added later as a drop-in (Phase 4)
+without changing the rest of the pipeline. Nothing is dropped.
 
 ```
 Store URL
@@ -71,14 +79,18 @@ Each store is loaded **twice** — desktop and mobile viewport. Many checks
 ## Build phases
 
 1. **Phase 1 — Single-site prototype.** Scaffold, load site desktop+mobile,
-   implement DOM checks, add PageSpeed for speed, add the vision layer, output
-   92 rows for one store. (First run: Lo & Co Interiors, already in the input.)
+   implement DOM checks, add PageSpeed for speed, output all 92 rows for one
+   store (Vision + Manual rows as `review` with screenshots). (First run: Lo & Co
+   Interiors, already in the input.)
 2. **Phase 2 — Calibration.** Manually audit 3–5 stores across niches (golden
    reference); diff the agent's answers; fix rules/prompts until ≥85% agreement
-   on DOM + Vision checks.
+   on the DOM checks.
 3. **Phase 3 — Batch runner.** Queue one job per URL, add retries/timeouts and a
    residential proxy pool, handle blocked sites as `could not audit`, run the
    full list.
+4. **Phase 4 — Vision layer (deferred).** Once a vision provider is chosen, add a
+   pluggable vision function that answers the Vision-tagged checks from the saved
+   screenshots. Drop-in; nothing else changes.
 
 ---
 

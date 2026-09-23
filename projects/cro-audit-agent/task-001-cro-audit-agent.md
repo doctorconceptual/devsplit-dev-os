@@ -22,9 +22,9 @@ than assume or fill the gap yourself.
 
 ## Required Reading (load before starting)
 
-- `.devos/constitution/company.md`
-- `.devos/constitution/engineering-standards.md`
-- `.devos/departments/engineering/senior-fullstack-engineer.md`
+- `constitution/company.md`
+- `constitution/engineering-standards.md`
+- `departments/engineering/senior-fullstack-engineer.md`
 - `projects/cro-audit-agent/cro-audit-checklist.xlsx` — the 92-point checklist
   this agent is built to run. It is the specification. Route each check by its
   `Method` column (DOM / Vision / API / Manual).
@@ -53,6 +53,14 @@ This is **build-and-calibrate, not model training.** No fine-tuning, no labelled
 dataset. The checklist is the spec. The agent knows it as instructions; you tune
 those instructions against a golden reference until agreement is high.
 
+**No Vision API in this build.** To avoid a paid vision-model dependency for now,
+the agent automates only the `DOM` checks (61) and the free `API` speed checks
+(4). The `Vision` checks (20) and `Manual` checks (7) are NOT judged by the
+agent — instead the agent captures desktop + mobile screenshots and outputs those
+rows as `review`, so a human makes the visual call quickly with the screenshots in
+hand. Nothing is dropped. A vision model can be added later as a drop-in (see
+"Phase 4 — Vision layer (deferred)") without changing the rest of the pipeline.
+
 ---
 
 ## Before Doing Anything Else
@@ -63,7 +71,8 @@ those instructions against a golden reference until agreement is high.
    the project scaffold per the stack in "Scope of Work" below and confirm it
    runs before implementing checks.
 3. Bring up the local environment and confirm status (browser automation
-   dependencies installed, PageSpeed API key present).
+   dependencies installed, PageSpeed API key present). No vision-model key is
+   needed for this build.
 4. Read `sites-to-audit.xlsx` and state the first `Pending` store URL you will
    run against (record 1 is https://loandcointeriors.com/ — restate it verbatim).
    Confirm it is public and safe to hit.
@@ -81,8 +90,8 @@ ask — do not substitute your own assumption.
 > **gitignored** `credentials.local.md` (or `.env`) in the project root and
 > reference it here.
 
-- PageSpeed Insights API key: [reference where it lives — .env]
-- Vision model API key: [reference where it lives — .env]
+- PageSpeed Insights API key: [reference where it lives — .env] (free)
+- Vision model API key: NOT USED in this build (vision layer deferred — Phase 4)
 - Proxy provider credentials (Phase 3 only): [reference]
 - Scope: read-only against public store URLs. Never submit real orders or
   personal data on any prospect's site.
@@ -103,15 +112,18 @@ ask — do not substitute your own assumption.
       Playwright — engineer's choice, state which and why).
 - [ ] Playwright loader: render each store at desktop AND mobile viewports, wait
       for the page to settle, capture screenshots for both.
-- [ ] Implement `DOM` checks (~55 rows): read the rendered DOM for element
+- [ ] Implement `DOM` checks (61 rows): read the rendered DOM for element
       presence/position (review widget, size guide, breadcrumbs, search, filters,
       payment badges, image gallery, etc.).
 - [ ] Implement `API` checks (4 rows): call Google PageSpeed Insights and read
       Core Web Vitals. Speed is never "felt" by the agent.
-- [ ] Implement `Vision` checks (~22 rows): send screenshots to the vision model,
-      one tight instruction per check, forced structured JSON output, in small
-      batches (never all 22 in one prompt).
-- [ ] Assemble output: one row per check → `Exists?` (Y/N/NA/unsure),
+- [ ] `Vision` checks (20 rows) and `Manual` checks (7 rows): DO NOT judge these
+      with a model in this build. Output each as `Exists? = review`, and save the
+      relevant desktop and mobile screenshots (referenced from the row's
+      `Evidence`) so a human can make the call. No vision-model calls.
+- [ ] Save screenshots to a per-store folder (e.g. `output/<store-slug>/`) and
+      reference them from the `review` rows so the human reviewer can open them.
+- [ ] Assemble output: one row per check → `Exists?` (Y/N/NA/unsure/review),
       `Confidence`, `Evidence`, `Method`, and the pre-written `Email line` when
       `Exists? = Y`. Write to the checklist's `.xlsx`/sheet format.
 
@@ -119,7 +131,9 @@ ask — do not substitute your own assumption.
 - [ ] Manually audit 3–5 stores across different niches (the golden reference).
 - [ ] Run the agent on the same stores; diff the answers.
 - [ ] Fix the rule or prompt behind each disagreement.
-- [ ] Stop when agreement is consistently ≥85% on DOM + Vision checks.
+- [ ] Stop when agreement is consistently ≥85% on the `DOM` checks. (Vision
+      checks are human-reviewed in this build, so they are not part of the
+      automated-agreement metric yet.)
 
 ### Phase 3 — Batch runner
 - [ ] Wrap single-site logic in a queue (one job per URL).
@@ -127,6 +141,14 @@ ask — do not substitute your own assumption.
 - [ ] Residential proxy pool; handle blocked/failed sites as `could not audit`
       (never crash the batch).
 - [ ] Run the full URL list; review output.
+
+### Phase 4 — Vision layer (DEFERRED — do not build now)
+- [ ] When a vision provider is chosen and a key is available, add a pluggable
+      vision function: send the saved screenshots to the model, one tight
+      instruction per `Vision` check, forced structured JSON, in small batches.
+- [ ] This replaces the `review` output for `Vision`-tagged rows with an
+      automated `Y/N/NA/unsure` + evidence. It must be a drop-in: nothing else in
+      the pipeline changes. Treat the vision model as one swappable interface.
 
 ---
 
@@ -161,16 +183,19 @@ ask — do not substitute your own assumption.
 
 ## Acceptance Criteria / Manual QA Steps
 
-1. `Method` column added and all 92 rows tagged (DOM/Vision/API/Manual).
+1. All 92 rows appear in the output, routed by the `Method` column.
 2. A single-site run produces all 92 rows in the checklist's format.
-3. Spot-check 10 rows by hand against the live site (DOM, Vision, and API each
-   represented) — every one matches reality.
-4. Every `Y` row carries a real evidence note and the correct email line.
-5. Mobile-only checks (sticky Add to Cart, tap targets, mobile layout) are
+3. `DOM` and `API` rows are auto-answered; `Vision` and `Manual` rows output
+   `review` with screenshots referenced. No vision-model calls are made.
+4. Spot-check 10 auto-answered rows (DOM + API) by hand against the live site —
+   every one matches reality.
+5. Every `Y` row carries a real evidence note and the correct email line.
+6. Mobile-only checks (sticky Add to Cart, tap targets, mobile layout) are
    evaluated at the mobile viewport, not desktop.
-6. A deliberately broken URL yields `could not audit`, not a crash.
-7. Calibration: ≥85% agreement with the golden reference on DOM + Vision checks.
-8. Batch runner handles blocked/failed sites gracefully.
+7. Desktop + mobile screenshots are saved and openable from the `review` rows.
+8. A deliberately broken URL yields `could not audit`, not a crash.
+9. Calibration: ≥85% agreement with the golden reference on the `DOM` checks.
+10. Batch runner handles blocked/failed sites gracefully.
 
 ---
 
@@ -197,15 +222,17 @@ ask — do not substitute your own assumption.
 - The work requires an architecture change beyond what's described.
 - A prospect site actively blocks automated access and no proxy is configured
   (Phase 1/2).
-- Multiple valid approaches have significant trade-offs (e.g. vision model
-  choice, output target).
+- Multiple valid approaches have significant trade-offs (e.g. output target,
+  stack choice).
 - Anything in this file conflicts with a DevOS document.
 
 ---
 
 ## Open Decisions (confirm with Talal before Phase 1)
 
-- [ ] Vision model: Claude / GPT-4o-class / open-weight.
+- [ ] Vision model: DEFERRED — not used in this build (Phase 4). Decide the
+      provider later (Claude / GPT-4o-class / Gemini / open-weight); until then
+      Vision checks are human-reviewed.
 - [ ] Output target: existing `.xlsx` / Google Sheet, or a DB + review UI.
 - [ ] Checkout checks: leave all `Manual` for now, or automate the safe ones.
 - [ ] Proxy provider (biggest reliability + cost factor at scale).
@@ -216,11 +243,12 @@ ask — do not substitute your own assumption.
 ## Definition of Done
 
 - [ ] Objective met
-- [ ] `Method` column added; all 92 rows tagged
 - [ ] Single-site run produces all 92 rows in checklist format
-- [ ] ≥85% agreement with golden reference on DOM + Vision checks
+- [ ] `DOM` + `API` rows auto-answered; `Vision` + `Manual` rows output `review`
+      with screenshots referenced (no vision-model calls)
+- [ ] ≥85% agreement with golden reference on the `DOM` checks
 - [ ] No fabricated observations (verified by QA spot-check)
-- [ ] Speed sourced from PageSpeed API; manual-tier checks output `review`
+- [ ] Speed sourced from PageSpeed API
 - [ ] Batch runner handles blocked/failed sites gracefully
 - [ ] Secrets kept out of git
 - [ ] Branch created and changes committed locally (do not push unless told)
