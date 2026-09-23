@@ -1,0 +1,176 @@
+{
+  "name": "desktop-home",
+  "url": "https://example.test/",
+  "captured_at": "2026-09-23T11:42:53.853886+00:00",
+  "viewport": {
+    "width": 1440,
+    "height": 1000
+  },
+  "scrollY": 0,
+  "document_height": 1000,
+  "title": "",
+  "screenshot": "E:\\Projects\\devsplit-dev-os\\projects\\cro-audit-agent\\code\\.test-tmp\\test_collect_visits_rendered_l0\\desktop-home.png",
+  "elements": [
+    {
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Test",
+      "label": null,
+      "href": "/products/test",
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 26.4375,
+        "height": 17,
+        "documentY": 8
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<a href=\"/products/test\">Test</a>"
+    },
+    {
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "New",
+      "label": null,
+      "href": "/collections/new",
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 34.4375,
+        "y": 8,
+        "width": 30.21875,
+        "height": 17,
+        "documentY": 8
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<a href=\"/collections/new\">New</a>"
+    },
+    {
+      "tag": "h1",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Test product",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 47.4375,
+        "width": 1424,
+        "height": 37,
+        "documentY": 47.4375
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<h1>Test product</h1>"
+    },
+    {
+      "tag": "img",
+      "id": "",
+      "classes": "w-100",
+      "role": null,
+      "text": "product image",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 105.875,
+        "width": 100,
+        "height": 100,
+        "documentY": 105.875
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<img class=\"w-100\" style=\"width:100px;height:100px\" alt=\"product image\" onclick=\"document.getElementById('zoom').hidden=false\">"
+    },
+    {
+      "tag": "button",
+      "id": "",
+      "classes": "action",
+      "role": null,
+      "text": "MARBLE",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 112,
+        "y": 190.875,
+        "width": 70.828125,
+        "height": 21,
+        "documentY": 190.875
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<button class=\"action\" onclick=\"document.getElementById('results').hidden=false\">MARBLE</button>"
+    },
+    {
+      "tag": "button",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Search",
+      "label": "Open search",
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 186.828125,
+        "y": 190.875,
+        "width": 58.25,
+        "height": 21,
+        "documentY": 190.875
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<button aria-label=\"Open search\" onclick=\"document.getElementById('s').hidden=false\">Search</button>"
+    },
+    {
+      "tag": "button",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Add to bag",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 249.078125,
+        "y": 190.875,
+        "width": 80.484375,
+        "height": 21,
+        "documentY": 190.875
+      },
+      "context": "TestNew\nTest product\n MARBLE Search Add to bag",
+      "outer": "<button onclick=\"document.getElementById('bag').hidden=false\">Add to bag</button>"
+    }
+  ]
+}

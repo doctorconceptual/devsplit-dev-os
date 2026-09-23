@@ -1,0 +1,14 @@
+{
+  "status": "could not audit",
+  "blocked": true,
+  "visits": [
+    {
+      "url": "https://example.test/",
+      "name": "desktop-home",
+      "status": "could not audit",
+      "blocked": true
+    }
+  ],
+  "snapshots": {},
+  "interactions": {}
+}

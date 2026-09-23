@@ -1,1 +1,5 @@
 .env
+credentials.local.md
+code/.venv/
+code/**/__pycache__/
+code/.pytest_cache/

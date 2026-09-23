@@ -1,0 +1,107 @@
+[
+  {
+    "file": "qa-cart-desktop.png",
+    "width": 1440,
+    "height": 3120,
+    "crc_valid": true,
+    "decompressed_bytes": 13481520
+  },
+  {
+    "file": "qa-cart-mobile.png",
+    "width": 390,
+    "height": 3264,
+    "crc_valid": true,
+    "decompressed_bytes": 3822144
+  },
+  {
+    "file": "qa-collection-desktop.png",
+    "width": 1440,
+    "height": 2965,
+    "crc_valid": true,
+    "decompressed_bytes": 12811765
+  },
+  {
+    "file": "qa-collection-mobile.png",
+    "width": 390,
+    "height": 3714,
+    "crc_valid": true,
+    "decompressed_bytes": 4349094
+  },
+  {
+    "file": "qa-filters-open.png",
+    "width": 1440,
+    "height": 2965,
+    "crc_valid": true,
+    "decompressed_bytes": 12811765
+  },
+  {
+    "file": "qa-full-cart.png",
+    "width": 1440,
+    "height": 1577,
+    "crc_valid": true,
+    "decompressed_bytes": 6814217
+  },
+  {
+    "file": "qa-home-desktop-verified.png",
+    "width": 1440,
+    "height": 9905,
+    "crc_valid": true,
+    "decompressed_bytes": 42799505
+  },
+  {
+    "file": "qa-home-mobile-verified.png",
+    "width": 390,
+    "height": 7587,
+    "crc_valid": true,
+    "decompressed_bytes": 8884377
+  },
+  {
+    "file": "qa-policy-shipping-costs.png",
+    "width": 1440,
+    "height": 1763,
+    "crc_valid": true,
+    "decompressed_bytes": 7617923
+  },
+  {
+    "file": "qa-product-expanded-desktop.png",
+    "width": 1440,
+    "height": 3120,
+    "crc_valid": true,
+    "decompressed_bytes": 13481520
+  },
+  {
+    "file": "qa-product-expanded-mobile.png",
+    "width": 390,
+    "height": 3264,
+    "crc_valid": true,
+    "decompressed_bytes": 3822144
+  },
+  {
+    "file": "qa-search-desktop.png",
+    "width": 1440,
+    "height": 10699,
+    "crc_valid": true,
+    "decompressed_bytes": 46230379
+  },
+  {
+    "file": "qa-search-mobile.png",
+    "width": 390,
+    "height": 7587,
+    "crc_valid": true,
+    "decompressed_bytes": 8884377
+  },
+  {
+    "file": "qa-shipping-returns.png",
+    "width": 1440,
+    "height": 1763,
+    "crc_valid": true,
+    "decompressed_bytes": 7617923
+  },
+  {
+    "file": "qa-zoom-desktop.png",
+    "width": 1440,
+    "height": 1000,
+    "crc_valid": true,
+    "decompressed_bytes": 4321000
+  }
+]

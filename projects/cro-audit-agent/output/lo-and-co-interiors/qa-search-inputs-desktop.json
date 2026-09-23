@@ -1,0 +1,12 @@
+[
+  {
+    "type": "text",
+    "placeholder": "Search Lo & Co",
+    "html": "<input _ngcontent-ng-c671053157=\"\" placeholder=\"Search Lo &amp; Co\" autofocus=\"autofocus\" class=\"search-input__input ng-tns-c671053157-3 ng-trigger ng-trigger-fade ng-untouched ng-pristine ng-valid\">"
+  },
+  {
+    "type": "email",
+    "placeholder": "Your email address",
+    "html": "<input _ngcontent-ng-c1326578859=\"\" formcontrolname=\"email\" type=\"email\" placeholder=\"Your email address\" aria-required=\"true\" autocorrect=\"off\" autocapitalize=\"off\" class=\"form-control px-1 ng-untouched ng-pristine ng-invalid\" value=\"\" style=\"\">"
+  }
+]
