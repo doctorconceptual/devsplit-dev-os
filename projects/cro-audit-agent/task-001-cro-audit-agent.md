@@ -122,8 +122,9 @@ ask — do not substitute your own assumption.
       with a model in this build. Output each as `Exists? = review`, and save the
       relevant desktop and mobile screenshots (referenced from the row's
       `Evidence`) so a human can make the call. No vision-model calls.
-- [ ] Save screenshots to a per-store folder (e.g. `output/<store-slug>/`) and
-      reference them from the `review` rows so the human reviewer can open them.
+- [ ] Save screenshots to a per-store folder under `output/working/<store-slug>/`
+      and reference them from the `review` rows so the human reviewer can open
+      them. `output/working/` is gitignored — screenshots are never committed.
 - [ ] Assemble output: one row per check → `Exists?` (Y/N/NA/unsure/review),
       `Confidence`, `Evidence`, `Method`, and the pre-written `Email line` when
       `Exists? = Y`. Write to the checklist's `.xlsx`/sheet format.
@@ -193,7 +194,8 @@ ask — do not substitute your own assumption.
 5. Every `Y` row carries a real evidence note and the correct email line.
 6. Mobile-only checks (sticky Add to Cart, tap targets, mobile layout) are
    evaluated at the mobile viewport, not desktop.
-7. Desktop + mobile screenshots are saved and openable from the `review` rows.
+7. Desktop + mobile screenshots are saved under `output/working/<store-slug>/`
+   (gitignored) and openable from the `review` rows.
 8. A deliberately broken URL yields `could not audit`, not a crash.
 9. Calibration: ≥85% agreement with the golden reference on the `DOM` checks.
 10. Batch runner handles blocked/failed sites gracefully.

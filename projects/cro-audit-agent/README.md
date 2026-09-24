@@ -54,7 +54,7 @@ without changing the rest of the pipeline. Nothing is dropped.
 Store URL
   ├─> Headless browser (Playwright): render desktop + mobile, screenshot both
   │     ├─> DOM extractor        -> DOM checks
-  │     └─> Desktop + mobile screenshots -> human review (Vision + Manual)
+  │     └─> Screenshots -> Vision model -> Vision checks
   ├─> PageSpeed Insights API      -> Speed checks
   └─> Result assembler -> 92-row output (Y/N/NA + confidence + evidence + method)
         └─> Human review (confirm + pick the email line)
@@ -73,6 +73,8 @@ Each store is loaded **twice** — desktop and mobile viewport. Many checks
 - **Output:** one 92-row result per store, in the `cro-audit-checklist.xlsx`
   column format, with `Exists?`, `Confidence`, `Evidence`, and the pre-written
   `Email line` (when `Exists? = Y`).
+- **Screenshots / working files:** saved to `output/working/<store-slug>/`, which
+  is **gitignored** — screenshots are never committed to the repo.
 
 ---
 
@@ -109,29 +111,6 @@ Each store is loaded **twice** — desktop and mobile viewport. Many checks
 ## Running it (once built)
 
 See `task-001-cro-audit-agent.md` for the full task, branching, acceptance
-criteria, and open decisions. The PageSpeed key lives in a gitignored `.env`
-as `PAGESPEED_API_KEY`. No vision-model key or model calls are used. Proxy
-configuration and batch processing are outside Phase 1.
-
-## Phase 1 interpretation and safety
-
-- `Y` means the checklist's **problem is present**, not that the desirable
-  feature exists. Only `Y` rows include their original email-ready line.
-- `unsure` means the available evidence cannot establish the observation.
-  A timeout, ambiguous selector, hidden control, or limited sample is not proof
-  that a feature is missing.
-- All 20 `Vision` and 7 `Manual` rows remain `review`, including niche-specific
-  rows. Screenshots are evidence for a human, never model inputs.
-- The input labels Lo & Co Interiors as `furniture`; the live site describes
-  architectural hardware. Preserve the input, and interpret product-specific
-  findings against the actual inspected products rather than assuming sofas
-  or other furniture inventory.
-- Checklist #59 is tagged `API` but asks about broken links, 404s and
-  placeholder content. PageSpeed does not establish this site-wide observation.
-  Preserve the tag and return `unsure` with the limitation recorded; do not
-  substitute a speed metric or silently change the method.
-- PageSpeed field data and Lighthouse lab measurements are different sources
-  within the API response and can disagree. Evidence must identify which was
-  used. One lab run does not demonstrate that field layout shifts never occur.
-- Audit only the first Pending store for Phase 1. No batch runner, proxy layer,
-  calibration phase, checkout submission, account creation, or model layer.
+criteria, and open decisions. Secrets (PageSpeed key, vision-model key, proxy
+credentials) live in a gitignored `.env` / `credentials.local.md`, never in
+this repo.
