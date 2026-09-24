@@ -180,9 +180,14 @@ def assemble(rows: list[dict], store: dict, snapshots: dict, output_folder: Path
     dom_results = answer_dom_rows(dom_rows, snapshots)
     assembled = []
     for row in rows:
-        if row["Method"] in ("Vision", "Manual"):
+        niche = str(store.get("Niche") or "").strip()
+        applies_to = str(row.get("Applies to") or "")
+        blank_niche_exclusion = not niche and "All stores" not in applies_to
+        if blank_niche_exclusion:
+            result = {"exists": "NA", "confidence": "high", "evidence": "Not applicable because the input store has no niche set; only universal checks were run."}
+        elif row["Method"] in ("Vision", "Manual"):
             result = review_result(row, output_folder)
-        elif not _applicable(row, str(store.get("Niche") or "")):
+        elif not _applicable(row, niche):
             result = {"exists": "NA", "confidence": "high", "evidence": "Not applicable to the store niche listed in the input workbook."}
         elif row["Method"] == "DOM":
             result = dom_results[row["#"]]
@@ -216,7 +221,7 @@ def write_report(path: Path, store: dict, rows: list[dict]) -> None:
     workbook.save(path)
 
 
-def update_input(path: Path, store_url: str, output_link: str) -> None:
+def update_input(path: Path, store_url: str, output_link: str, status: str = "Done") -> None:
     workbook = load_workbook(path)
     ws = workbook["Sites"]
     header_cells = next(row for row in ws.iter_rows() if row[1].value == "Store URL")
@@ -224,7 +229,7 @@ def update_input(path: Path, store_url: str, output_link: str) -> None:
     headers = {cell.value: cell.column for cell in header_cells}
     for row in range(header_row + 1, ws.max_row + 1):
         if ws.cell(row, headers["Store URL"]).value == store_url and ws.cell(row, headers["Status"]).value == "Pending":
-            ws.cell(row, headers["Status"]).value = "Done"
+            ws.cell(row, headers["Status"]).value = status
             ws.cell(row, headers["Date Audited"]).value = datetime.now(timezone.utc).date().isoformat()
             ws.cell(row, headers["Output File / Link"]).value = output_link
             workbook.save(path)
@@ -232,27 +237,58 @@ def update_input(path: Path, store_url: str, output_link: str) -> None:
     raise ValueError("Pending store row disappeared before update")
 
 
-def audit_store(project: Path) -> Path:
+def _store_rows(path: Path) -> list[dict]:
+    ws = load_workbook(path, data_only=True)["Sites"]
+    header_row = next(row for row in ws.iter_rows() if row[1].value == "Store URL")
+    headers = [cell.value for cell in header_row]
+    return [dict(zip(headers, values)) for values in ws.iter_rows(min_row=header_row[0].row + 1, values_only=True)
+            if values[0] is not None]
+
+
+def audit_store(project: Path, store: dict | None = None) -> Path:
     load_dotenv(project / ".env")
     checklist = load_checklist(project / "cro-audit-checklist.xlsx")
-    store = first_pending_store(project / "sites-to-audit.xlsx")
-    output_folder = project / "output" / slugify(str(store["Store Name"]))
+    store = store or first_pending_store(project / "sites-to-audit.xlsx")
+    output_folder = project / "output" / "working" / slugify(str(store["Store Name"]))
     output_folder.mkdir(parents=True, exist_ok=True)
     evidence = browser.collect(str(store["Store URL"]), output_folder)
     if evidence.get("status") == "could not audit":
         raise RuntimeError(evidence.get("status"))
     api_results = run_pagespeed(str(store["Store URL"]), os.getenv("PAGESPEED_API_KEY", ""))
-    report = project / "output" / "cro-audit-results.xlsx"
+    report = project / "output" / f"{slugify(str(store['Store Name']))}-cro-audit-results.xlsx"
     rows = assemble(checklist, store, evidence.get("snapshots", {}), output_folder, api_results)
     write_report(report, store, rows)
     update_input(project / "sites-to-audit.xlsx", str(store["Store URL"]), report.as_posix())
     return report
 
 
+def batch_audit(project: Path) -> list[dict]:
+    """Audit all Pending stores in workbook order; isolate failures per store."""
+    input_path = project / "sites-to-audit.xlsx"
+    results = []
+    for store in _store_rows(input_path):
+        if store.get("Status") != "Pending":
+            continue
+        name = str(store.get("Store Name") or "Audited Store")
+        try:
+            report = audit_store(project, store)
+            results.append({"store": name, "url": str(store["Store URL"]), "status": "Done",
+                            "output": report.as_posix()})
+        except Exception as exc:
+            slug = slugify(name)
+            failure = project / "output" / f"{slug}-could-not-audit.txt"
+            failure.write_text(f"{name}\n{store['Store URL']}\n{type(exc).__name__}: {exc}\n", encoding="utf-8")
+            update_input(input_path, str(store["Store URL"]), failure.as_posix(), status="Could not audit")
+            results.append({"store": name, "url": str(store["Store URL"]), "status": "Could not audit",
+                            "output": failure.as_posix(), "error": f"{type(exc).__name__}: {exc}"})
+    return results
+
+
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--project", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument("--smoke", action="store_true")
+    parser.add_argument("--batch", action="store_true", help="Audit every Pending store in workbook order")
     args = parser.parse_args()
     if args.smoke:
         from playwright.sync_api import sync_playwright
@@ -262,6 +298,9 @@ def main() -> None:
             page.set_content("<title>scaffold ready</title>")
             print(page.title())
             browser_instance.close()
+        return
+    if args.batch:
+        print(json.dumps(batch_audit(args.project), indent=2))
         return
     print(audit_store(args.project))
 

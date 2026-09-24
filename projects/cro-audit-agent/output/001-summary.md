@@ -31,3 +31,17 @@ Niche: furniture
 - No vision-model calls were made.
 - Checklist #59 remains `unsure` because PageSpeed does not establish a site-wide broken-link/placeholder observation.
 - PageSpeed evidence distinguishes field metrics from Lighthouse lab measurements.
+
+
+## Batch audit summary (2026-09-24)
+
+- https://www.amazinggiantflowers.com — Could not audit — 0 Y flags
+- https://www.linneadesign.com/ — Done — 10 Y flags
+- http://boxwoodgift.com — Done — 8 Y flags
+- http://melaninmeanings.com — Done — 4 Y flags
+- https://smrutipens.com — Done — 5 Y flags
+- https://aromaart.co/ — Done — 2 Y flags
+- https://www.nzitelli.com — Done — 0 Y flags
+- http://www.outpatch.org — Done — 2 Y flags
+- https://www.placeofaroma.com — Done — 8 Y flags
+- https://www.packagemint.com — Done — 3 Y flags
