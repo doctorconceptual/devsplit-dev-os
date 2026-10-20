@@ -1,0 +1,284 @@
+{
+  "name": "desktop-add-cart",
+  "url": "https://example.test/products/test",
+  "clicked": true,
+  "success": true,
+  "target": {
+    "text": "Add to bag",
+    "outer": "<button onclick=\"document.getElementById('bag').hidden=false\">Add to bag</button>",
+    "rect": {
+      "x": 249.078125,
+      "y": 190.875,
+      "width": 80.484375,
+      "height": 21
+    }
+  },
+  "after": {
+    "name": "desktop-add-cart",
+    "url": "https://example.test/products/test",
+    "captured_at": "2026-09-23T11:43:14.081881+00:00",
+    "viewport": {
+      "width": 1440,
+      "height": 1000
+    },
+    "scrollY": 0,
+    "document_height": 1000,
+    "title": "",
+    "screenshot": "E:\\Projects\\devsplit-dev-os\\projects\\cro-audit-agent\\code\\.test-tmp\\test_collect_visits_rendered_l0\\desktop-add-cart.png",
+    "elements": [
+      {
+        "tag": "a",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Test",
+        "label": null,
+        "href": "/products/test",
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 8,
+          "width": 26.4375,
+          "height": 17,
+          "documentY": 8
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<a href=\"/products/test\">Test</a>"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "New",
+        "label": null,
+        "href": "/collections/new",
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 34.4375,
+          "y": 8,
+          "width": 30.21875,
+          "height": 17,
+          "documentY": 8
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<a href=\"/collections/new\">New</a>"
+      },
+      {
+        "tag": "h1",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Test product",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 47.4375,
+          "width": 1424,
+          "height": 37,
+          "documentY": 47.4375
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<h1>Test product</h1>"
+      },
+      {
+        "tag": "img",
+        "id": "",
+        "classes": "w-100",
+        "role": null,
+        "text": "product image",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 105.875,
+          "width": 100,
+          "height": 100,
+          "documentY": 105.875
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<img class=\"w-100\" style=\"width:100px;height:100px\" alt=\"product image\" onclick=\"document.getElementById('zoom').hidden=false\">"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "classes": "action",
+        "role": null,
+        "text": "MARBLE",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 112,
+          "y": 190.875,
+          "width": 70.828125,
+          "height": 21,
+          "documentY": 190.875
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<button class=\"action\" onclick=\"document.getElementById('results').hidden=false\">MARBLE</button>"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Search",
+        "label": "Open search",
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 186.828125,
+          "y": 190.875,
+          "width": 58.25,
+          "height": 21,
+          "documentY": 190.875
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<button aria-label=\"Open search\" onclick=\"document.getElementById('s').hidden=false\">Search</button>"
+      },
+      {
+        "tag": "button",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Add to bag",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 249.078125,
+          "y": 190.875,
+          "width": 80.484375,
+          "height": 21,
+          "documentY": 190.875
+        },
+        "context": "TestNew\nTest product\n MARBLE Search Add to bag\n\nShopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<button onclick=\"document.getElementById('bag').hidden=false\">Add to bag</button>"
+      },
+      {
+        "tag": "p",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Shopping bag Test product",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 227.875,
+          "width": 1424,
+          "height": 18,
+          "documentY": 227.875
+        },
+        "context": "Shopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<p>Shopping bag Test product</p>"
+      },
+      {
+        "tag": "p",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "Subtotal",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 261.875,
+          "width": 1424,
+          "height": 18,
+          "documentY": 261.875
+        },
+        "context": "Shopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<p>Subtotal</p>"
+      },
+      {
+        "tag": "p",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "$44",
+        "label": null,
+        "href": null,
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 295.875,
+          "width": 1424,
+          "height": 18,
+          "documentY": 295.875
+        },
+        "context": "Shopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<p>$44</p>"
+      },
+      {
+        "tag": "a",
+        "id": "",
+        "classes": "",
+        "role": null,
+        "text": "View Bag",
+        "label": null,
+        "href": "/cart",
+        "src": null,
+        "type": null,
+        "name": null,
+        "action": null,
+        "position": "static",
+        "rect": {
+          "x": 8,
+          "y": 329.875,
+          "width": 63.46875,
+          "height": 17,
+          "documentY": 329.875
+        },
+        "context": "Shopping bag Test product\n\nSubtotal\n\n$44\n\nView Bag",
+        "outer": "<a href=\"/cart\">View Bag</a>"
+      }
+    ]
+  }
+}

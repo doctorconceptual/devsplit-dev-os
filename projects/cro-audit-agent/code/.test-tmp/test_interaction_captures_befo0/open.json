@@ -1,0 +1,38 @@
+{
+  "name": "open",
+  "url": "about:blank",
+  "captured_at": "2026-09-23T11:42:45.374539+00:00",
+  "viewport": {
+    "width": 1280,
+    "height": 720
+  },
+  "scrollY": 0,
+  "document_height": 720,
+  "title": "",
+  "screenshot": "E:\\Projects\\devsplit-dev-os\\projects\\cro-audit-agent\\code\\.test-tmp\\test_interaction_captures_befo0\\open.png",
+  "elements": [
+    {
+      "tag": "button",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Opened",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 63.4375,
+        "height": 21,
+        "documentY": 8
+      },
+      "context": "Opened",
+      "outer": "<button onclick=\"this.innerText='Opened'\">Opened</button>"
+    }
+  ]
+}

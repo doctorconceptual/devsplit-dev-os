@@ -1,0 +1,84 @@
+{
+  "name": "mobile-product",
+  "url": "about:blank",
+  "captured_at": "2026-09-23T11:42:41.378118+00:00",
+  "viewport": {
+    "width": 390,
+    "height": 844
+  },
+  "scrollY": 0,
+  "document_height": 844,
+  "title": "",
+  "screenshot": "E:\\Projects\\devsplit-dev-os\\projects\\cro-audit-agent\\code\\.test-tmp\\test_snapshot_records_visible_0\\mobile-product.png",
+  "elements": [
+    {
+      "tag": "h1",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Product",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 8,
+        "width": 374,
+        "height": 37,
+        "documentY": 8
+      },
+      "context": "Product\nAdd to cartTest",
+      "outer": "<h1>Product</h1>"
+    },
+    {
+      "tag": "button",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Add to cart",
+      "label": null,
+      "href": null,
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 8,
+        "y": 66.4375,
+        "width": 80.46875,
+        "height": 21,
+        "documentY": 66.4375
+      },
+      "context": "Product\nAdd to cartTest",
+      "outer": "<button>Add to cart</button>"
+    },
+    {
+      "tag": "a",
+      "id": "",
+      "classes": "",
+      "role": null,
+      "text": "Test",
+      "label": null,
+      "href": "/products/test",
+      "src": null,
+      "type": null,
+      "name": null,
+      "action": null,
+      "position": "static",
+      "rect": {
+        "x": 88.46875,
+        "y": 67.4375,
+        "width": 26.4375,
+        "height": 17,
+        "documentY": 67.4375
+      },
+      "context": "Product\nAdd to cartTest",
+      "outer": "<a href=\"/products/test\">Test</a>"
+    }
+  ]
+}

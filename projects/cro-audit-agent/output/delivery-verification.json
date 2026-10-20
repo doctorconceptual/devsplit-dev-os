@@ -1,0 +1,120 @@
+{
+  "structural_contract": "passed",
+  "rows": 92,
+  "routing": {
+    "DOM": 61,
+    "Vision": 20,
+    "Manual": 7,
+    "API": 4
+  },
+  "statuses": {
+    "unsure": 15,
+    "review": 27,
+    "N": 24,
+    "Y": 9,
+    "NA": 17
+  },
+  "png_files_valid": 79,
+  "qa_matches": 12,
+  "qa_compared": 12,
+  "qa_comparisons": [
+    {
+      "id": 29,
+      "expected": "N",
+      "evidence_file": "qa-home-desktop.json",
+      "fact": "Rendered announcement says complimentary US shipping on orders over $300 and no-fuss 30-day returns.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 30,
+      "expected": "N",
+      "evidence_file": "qa-home-desktop.json",
+      "fact": "Homepage has rendered category entry links including New and Handles, plus Shop Marble.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 37,
+      "expected": "N",
+      "evidence_file": "qa-home-mobile-verified.json",
+      "additional_evidence": "qa-home-desktop-verified.json",
+      "fact": "Visible Open search buttons on desktop and mobile; both were clicked successfully.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 38,
+      "expected": "N",
+      "evidence_file": "qa-search-mobile.json",
+      "additional_evidence": "qa-search-desktop.json",
+      "fact": "Typed Hubble without submitting; suggestions include Hubble Knob Verde Marble and Hubble Knob Viola Marble on both viewports.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 41,
+      "expected": "N",
+      "evidence_file": "qa-home-mobile-verified.json",
+      "fact": "Footer exposes Contact and Shipping & Returns links; shipping/returns page was opened independently.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 42,
+      "expected": "N",
+      "evidence_file": "qa-full-cart.json",
+      "fact": "After adding the $44 Hubble knob and clicking View Bag, the full cart says: You are $256.00 away from free shipping. Drawer alone does not show it.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 66,
+      "expected": "N",
+      "evidence_file": "qa-home-desktop.json",
+      "fact": "Newsletter: Sign up to our newsletter for special things and receive 10% off your next order. Newsletter email input independently observed; nothing submitted.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 69,
+      "expected": "N",
+      "evidence_file": "qa-home-desktop.json",
+      "fact": "Observed popup says: Sign up to receive 10% off your first order.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 75,
+      "expected": "N",
+      "evidence_file": "qa-product-desktop.json",
+      "fact": "Hubble Knob product description explicitly gives small diameter 40mm and projection 35mm, large diameter 60mm and projection 55mm, with drawer/furniture usage context.",
+      "actual": "N",
+      "matches": true
+    },
+    {
+      "id": 56,
+      "expected": "Y",
+      "evidence_file": "pagespeed-mobile.json",
+      "fact": "HTTP 200 PageSpeed mobile response: URL field LCP percentile 4867 ms, category SLOW. Lab LCP is a separate measurement, not a replacement for field data.",
+      "actual": "Y",
+      "matches": true
+    },
+    {
+      "id": 57,
+      "expected": "Y",
+      "evidence_file": "pagespeed-mobile.json",
+      "fact": "URL field CLS percentile is 28 in hundredths (0.28), category SLOW. Lab CLS was near zero; evidence must distinguish field and lab rather than cherry-pick.",
+      "actual": "Y",
+      "matches": true
+    },
+    {
+      "id": 58,
+      "expected": "Y",
+      "evidence_file": "pagespeed-mobile.json",
+      "fact": "image-delivery-insight score 0; estimated savings 181295 bytes across product-card images, including DOT/ARC/Hubble product images. Some already lazy-loaded; issue is oversized delivery, not blanket lack of lazy loading.",
+      "actual": "Y",
+      "matches": true
+    }
+  ]
+}

@@ -1,0 +1,7 @@
+{
+  "name": "mobile-shipping",
+  "url": "https://example.test/products/test",
+  "clicked": false,
+  "success": false,
+  "reason": "No visible unambiguous interaction target"
+}
